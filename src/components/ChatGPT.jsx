@@ -21,14 +21,20 @@ export default function ChatGPT() {
 
     return (
         <>
-            <h1> ChatGPT Teste</h1>
+            <div className="description">
+                <h1 className="description__text">Deixe a <span>INTELIGÊNCIA ARTIFICIAL</span> fazer o trabalho pesado para você</h1>
+            </div>
             <form className="form" onSubmit={handleSubmit}>
+                <div className="form__input">
                 <input
                     type="text"
                     value={prompt}
                     onChange={heandlePrompt}
+                    placeholder="DIGITE UM TEMA OU 5 PALAVRAS"
                 />
-                <div>
+                </div>
+                <div className="form__radio">
+                    <span>Criatividade do texto:</span>
                     <label htmlFor="Biaxo">
                         <input
                             type="radio"
@@ -59,10 +65,9 @@ export default function ChatGPT() {
                         />
                         Alta
                     </label>
-
                 </div>
             </form>
-            <div>{response}</div>
+            <div className="result">{response}</div>
         </>
     );
 }
