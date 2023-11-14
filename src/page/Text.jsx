@@ -1,23 +1,32 @@
 import React, { useState } from "react";
 import axios from "axios";
+import Loading from "../components/Loading";
 
-export default function ChatGPT() {
+export default function Text() {
     const [prompt, setPrompt] = useState("");
     const [gender, setGender] = useState("");
     const [response, setResponse] = useState("");
+    const [removeLoading, setRemoveLoading] = useState(true);
     const HTTP = "http://localhost:8020/chat";
 
     const handleSubmit = (e) => {
+
+
         e.preventDefault();
         axios
             .post(`${HTTP}`, { prompt, gender })
-            .then((res) => setResponse(res.data))
+            .then((res) => {
+                setResponse(res.data)
+                setRemoveLoading(true)
+
+            })
             .catch((error) => {
                 console.log(error);
             });
     }
-    
+
     const heandlePrompt = (e) => setPrompt(e.target.value);
+    const loadingActive = (e) => setRemoveLoading(false)
 
     return (
         <>
@@ -26,12 +35,12 @@ export default function ChatGPT() {
             </div>
             <form className="form" onSubmit={handleSubmit}>
                 <div className="form__input">
-                <input
-                    type="text"
-                    value={prompt}
-                    onChange={heandlePrompt}
-                    placeholder="DIGITE UM TEMA OU 5 PALAVRAS"
-                />
+                    <input
+                        type="text"
+                        value={prompt}
+                        onChange={heandlePrompt}
+                        placeholder="DIGITE UM TEMA OU 5 PALAVRAS"
+                    />
                 </div>
                 <div className="form__radio">
                     <span>Criatividade do texto:</span>
@@ -66,8 +75,17 @@ export default function ChatGPT() {
                         Alta
                     </label>
                 </div>
+
+                <button
+                    className="form__btn"
+                    type="submit"
+                    onClick={loadingActive}
+                >Gerar texto</button>
             </form>
-            <div className="result">{response}</div>
+            <div className="result">
+                {!removeLoading && <Loading />}
+                {response}
+            </div>
         </>
     );
 }

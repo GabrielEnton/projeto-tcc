@@ -1,4 +1,5 @@
 @import "./header.scss";
+@import "./loading.scss";
 
 .description {
   display: flex;
@@ -60,6 +61,25 @@
       display: flex;
       align-items: center;
     }
+  }
+  &__btn {
+    font-size: 20px;
+    background: #0690F3;
+    color: #020014;
+    width: 200px;
+    margin: 60px auto;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: none;
+    height: 60px;
+    border-radius: 4px;
+    cursor: pointer;
+
+    &:hover {
+      background: #0049D6;
+    }
+
+
   }
 }
 

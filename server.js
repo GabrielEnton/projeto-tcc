@@ -22,13 +22,24 @@ app.post("/chat", async (req, res) => {
     const {prompt} = req.body;
     const {gender} = req.body
 
-    const completion = await openai.createCompletion({
-        model: "text-davinci-003",
-        prompt: "fazer uma redação sobre " + prompt,
+    const completion = openai.createChatCompletion({
+        model: "gpt-4",
+        messages: [
+            {
+                role: "user",
+                content: "Gere um texto pra mim sobre" + prompt
+            }
+        ],
         max_tokens: 2048,
         temperature: gender
     });
-    res.send(completion.data.choices[0].text)
+
+    completion.then((result) => {
+        res.send(result.data.choices[0].message.content)
+    }).catch((err) => {
+        console.log(err)
+    })
+
 });
 
 app.listen(PORT, () => console.log(`Sever runnig on port: ${PORT}`));

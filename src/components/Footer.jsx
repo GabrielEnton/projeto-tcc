@@ -1,12 +1,10 @@
 import React from "react";
-import logo from "../img/Logo_site.png"
 
 
-export default function Header() {
+export default function Footer() {
     return (
         <>
             <header className="topo">
-                <img className="logo" src={logo} alt="Logo" />
                 <div className="bunttons">
                     <button className="bunttons__img">IMAGEM</button>
                     <button className="bunttons__cod">CÓDIGO</button>

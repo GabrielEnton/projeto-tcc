@@ -1,13 +1,19 @@
 import './App.scss';
-import ChatGPT from './components/ChatGPT';
 import Header from './components/Header';
+import Footer from './components/Footer';
+
+import { Outlet } from "react-router-dom"
+
 
 function App() {
   return (
-    <div className="App">
-      <Header/>
-      <ChatGPT/>
-    </div>
+    <>
+      <Header />
+
+      <Outlet/>
+
+      <Footer />
+    </>
   );
 }
 
