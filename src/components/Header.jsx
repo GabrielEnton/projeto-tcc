@@ -10,7 +10,7 @@ export default function Header() {
                 <img className="logo" src={logo} alt="Logo" />
                 <nav className="bunttons">
                     <Link to="/imagem"><button className="bunttons__img">IMAGEM</button></Link>
-                    <Link><button className="bunttons__cod">CÓDIGO</button></Link>
+                    <Link to="/codigo"><button className="bunttons__cod">CÓDIGO</button></Link>
                     <Link><button className="bunttons__text">TEXTO</button></Link>
                     
                 </nav>

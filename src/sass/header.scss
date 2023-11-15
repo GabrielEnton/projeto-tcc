@@ -12,10 +12,12 @@ header {
     }
 
     .bunttons {
+        display: grid;
+        grid-template-columns: 30% 30% 30%;
+        grid-column-gap: 30px;
         button {
             width: 160px;
             height: 40px;
-            margin: 0 15px;
         }
 
         &__img {

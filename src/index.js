@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom"
 
 import Text from './page/Text';
 import Img from './page/Img';
+import Code from './page/Code';
 
 const router = createBrowserRouter([
 
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
       {
         path: '/imagem',
         element: < Img />
+      },
+      {
+        path: '/codigo',
+        element: <Code/>
       }
     ]
   }

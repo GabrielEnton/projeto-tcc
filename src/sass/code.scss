@@ -1,5 +1,5 @@
-.page-img {
-    background: #140002;
+.page-code {
+    background: #021700;
 
     .description {
         display: flex;
@@ -15,7 +15,7 @@
             font-family: 'Righteous', cursive;
 
             span {
-                color: #e11b1b;
+                color: #20e70f;
                 font-family: 'Righteous', cursive;
             }
         }
@@ -43,7 +43,7 @@
 
                 &:focus {
                     outline: none;
-                    box-shadow: 0px 0px 0px 2px #e11b1b;
+                    box-shadow: 0px 0px 0px 2px #20e70f;
                 }
 
                 &::placeholder {
@@ -72,7 +72,7 @@
 
         &__btn {
             font-size: 20px;
-            background: #e11b1b;
+            background: #20e70f;
             color: #020014;
             width: 200px;
             margin: 60px auto;
@@ -84,7 +84,7 @@
             cursor: pointer;
 
             &:hover {
-                background: #550000;
+                background: #064e00;
             }
 
 
@@ -100,8 +100,5 @@
         background: #fff;
         border-radius: 3px;
         min-height: 400px;
-        img{
-            width: 100%;
-        }
     }
 }

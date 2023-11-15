@@ -29,9 +29,9 @@ export default function Text() {
     const loadingActive = (e) => setRemoveLoading(false)
 
     return (
-        <section className="page-text">
+        <section className="page-code">
             <div className="description">
-                <h1 className="description__text">Deixe a <span>INTELIGÊNCIA ARTIFICIAL</span> fazer o texo para você</h1>
+                <h1 className="description__text">Deixe a <span>INTELIGÊNCIA ARTIFICIAL</span> criar a pagina para você</h1>
             </div>
             <form className="form" onSubmit={handleSubmit}>
                 <div className="form__input">
@@ -39,48 +39,18 @@ export default function Text() {
                         type="text"
                         value={prompt}
                         onChange={heandlePrompt}
-                        placeholder="DIGITE UM TEMA OU 5 PALAVRAS"
+                        placeholder="DIGITE COMO VOCÊ QUER O SEU HTML"
                     />
                 </div>
                 <div className="form__radio">
                     <span>Criatividade do texto:</span>
-                    <label htmlFor="Biaxo">
-                        <input
-                            type="radio"
-                            label="Biaxo"
-                            checked={gender === 0.2}
-                            value={0.2}
-                            onClick={() => setGender(0.2)}
-                        />
-                        Baixo
-                    </label>
-                    <label htmlFor="Medio">
-                        <input
-                            type="radio"
-                            label="Medio"
-                            checked={gender === 0.5}
-                            value={0.5}
-                            onClick={() => setGender(0.5)}
-                        />
-                        Médio
-                    </label>
-                    <label htmlFor="Alto">
-                        <input
-                            type="radio"
-                            label="Medio"
-                            checked={gender === 0.8}
-                            value={0.8}
-                            onClick={() => setGender(0.8)}
-                        />
-                        Alta
-                    </label>
                 </div>
 
                 <button
                     className="form__btn"
                     type="submit"
                     onClick={loadingActive}
-                >Gerar texto</button>
+                >Gerar HTML</button>
             </form>
             <div className="result">
                 {!removeLoading && <Loading />}
