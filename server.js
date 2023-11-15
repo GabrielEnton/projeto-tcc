@@ -19,26 +19,39 @@ app.use(bodyParse.json());
 app.use(cors());
 
 app.post("/chat", async (req, res) => {
-    const {prompt} = req.body;
-    const {gender} = req.body
+    const { prompt } = req.body;
+    const { gender } = req.body
+    const { key } = req.body
 
-    const completion = openai.createChatCompletion({
-        model: "gpt-4",
-        messages: [
-            {
-                role: "user",
-                content: "Gere um texto pra mim sobre" + prompt
-            }
-        ],
-        max_tokens: 2048,
-        temperature: gender
-    });
+    if (key === "img") {
+        const image = await openai.createImage({
+            model: "dall-e-3",
+            prompt: prompt,
+            n: 1,
+            size: "1024x1024",
+        });
 
-    completion.then((result) => {
-        res.send(result.data.choices[0].message.content)
-    }).catch((err) => {
-        console.log(err)
-    })
+        res.send(image.data.data[0].url);
+        return;
+    } else {
+        const completion = openai.createChatCompletion({
+            model: "gpt-4",
+            messages: [
+                {
+                    role: "user",
+                    content: "Gere um texto pra mim sobre" + prompt
+                }
+            ],
+            max_tokens: 2048,
+            temperature: gender
+        });
+
+        completion.then((result) => {
+            res.send(result.data.choices[0].message.content)
+        }).catch((err) => {
+            console.log(err)
+        })
+    }
 
 });
 

@@ -5,6 +5,7 @@ import Loading from "../components/Loading";
 export default function Img() {
     const [prompt, setPrompt] = useState("");
     const [gender, setGender] = useState("");
+    const [key, setKey] = useState("");
     const [response, setResponse] = useState("");
     const [removeLoading, setRemoveLoading] = useState(true);
     const HTTP = "http://localhost:8020/chat";
@@ -14,7 +15,7 @@ export default function Img() {
 
         e.preventDefault();
         axios
-            .post(`${HTTP}`, { prompt, gender })
+            .post(`${HTTP}`, { prompt, gender, key })
             .then((res) => {
                 setResponse(res.data)
                 setRemoveLoading(true)
@@ -29,7 +30,7 @@ export default function Img() {
     const loadingActive = (e) => setRemoveLoading(false)
 
     return (
-        <>
+        <section className="page-img">
             <div className="description">
                 <h1 className="description__text">Deixe a <span>INTELIGÊNCIA ARTIFICIAL</span> fazer o trabalho pesado para você</h1>
             </div>
@@ -79,13 +80,15 @@ export default function Img() {
                 <button
                     className="form__btn"
                     type="submit"
-                    onClick={loadingActive}
-                >Gerar texto</button>
+                    onClick={() => setKey("img")}
+                    checked={key === "img"}
+                    value={"img"}
+                >Gerar imagem</button>
             </form>
             <div className="result">
-                {!removeLoading && <Loading />}
-                {response}
+                {!removeLoading && <Loading />}    
+                <img src={response} alt="" />
             </div>
-        </>
+        </section>
     );
 }

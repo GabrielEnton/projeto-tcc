@@ -29,7 +29,7 @@ export default function Text() {
     const loadingActive = (e) => setRemoveLoading(false)
 
     return (
-        <>
+        <section className="page-text">
             <div className="description">
                 <h1 className="description__text">Deixe a <span>INTELIGÊNCIA ARTIFICIAL</span> fazer o trabalho pesado para você</h1>
             </div>
@@ -86,6 +86,6 @@ export default function Text() {
                 {!removeLoading && <Loading />}
                 {response}
             </div>
-        </>
+        </section>
     );
 }
