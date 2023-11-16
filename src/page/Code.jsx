@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Loading from "../components/Loading";
+import Copy from "../components/Copy";
 
 export default function Text() {
     const [prompt, setPrompt] = useState("");
@@ -54,6 +55,7 @@ export default function Text() {
             </form>
             <div className="result">
                 {!removeLoading && <Loading />}
+                <Copy response={response}/>
                 {response}
             </div>
         </section>

@@ -100,5 +100,14 @@
         background: #fff;
         border-radius: 3px;
         min-height: 400px;
+        display: flex;
+        flex-direction: column;
+        .copy{
+            border: none;
+            background: transparent;
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 15px;
+        }
     }
 }

@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import Loading from "../components/Loading";
+import Copy from "../components/Copy";
+import Icon from "../components/Icon";
+import { copyToClipboeard } from "../helpers/copyToClickboard";
 
 export default function Text() {
     const [prompt, setPrompt] = useState("");
@@ -27,6 +30,31 @@ export default function Text() {
 
     const heandlePrompt = (e) => setPrompt(e.target.value);
     const loadingActive = (e) => setRemoveLoading(false)
+
+    const SETTIMEOUT_MS = 3000
+    const [hasCopied, setHasCopied] = useState(false);
+    const timeoutRef = useRef(null)
+
+    useEffect(()=>{
+        setTimeout(setHasCopied, SETTIMEOUT_MS, false);
+
+        return () => {
+            if(!timeoutRef) return;
+            clearTimeout(timeoutRef.current)
+        }
+
+    }, [hasCopied])
+
+    const handleOnClick = () => {
+        copyToClipboeard(response)
+        
+        setHasCopied(true);
+    };
+
+
+    const iconId = hasCopied ? 'check': 'copy';
+
+
 
     return (
         <section className="page-text">
@@ -82,10 +110,13 @@ export default function Text() {
                     onClick={loadingActive}
                 >Gerar texto</button>
             </form>
-            <div className="result">
+            <div className="result" >
                 {!removeLoading && <Loading />}
+                <Copy response={response}/>
                 {response}
+                
             </div>
+            
         </section>
     );
 }
