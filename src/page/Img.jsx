@@ -4,7 +4,6 @@ import Loading from "../components/Loading";
 
 export default function Img() {
     const [prompt, setPrompt] = useState("");
-    const [gender, setGender] = useState("");
     const [key, setKey] = useState("");
     const [response, setResponse] = useState("");
     const [removeLoading, setRemoveLoading] = useState(true);

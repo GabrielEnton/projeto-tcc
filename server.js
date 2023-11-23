@@ -33,7 +33,7 @@ app.post("/chat", async (req, res) => {
 
         res.send(image.data.data[0].url);
         return;
-    } else {
+    } else if(key === "text") {
         const completion = openai.createChatCompletion({
             model: "gpt-4",
             messages: [
@@ -51,6 +51,21 @@ app.post("/chat", async (req, res) => {
         }).catch((err) => {
             console.log(err)
         })
+    } else  {
+        const completion = await openai.createChatCompletion({
+            model: "gpt-4",
+            messages: [
+                {
+                    role: "user",
+                    content: prompt + "Mostra somente o html"
+                }
+            ],
+            max_tokens: 2048,
+            temperature: 0.8
+        });
+
+        res.send(completion.data.choices[0].message.content);
+
     }
 
 });

@@ -5,7 +5,6 @@ import Copy from "../components/Copy";
 
 export default function Text() {
     const [prompt, setPrompt] = useState("");
-    const [gender, setGender] = useState("");
     const [response, setResponse] = useState("");
     const [removeLoading, setRemoveLoading] = useState(true);
     const HTTP = "http://localhost:8020/chat";
@@ -15,7 +14,7 @@ export default function Text() {
 
         e.preventDefault();
         axios
-            .post(`${HTTP}`, { prompt, gender })
+            .post(`${HTTP}`, { prompt })
             .then((res) => {
                 setResponse(res.data)
                 setRemoveLoading(true)
@@ -55,8 +54,12 @@ export default function Text() {
             </form>
             <div className="result">
                 {!removeLoading && <Loading />}
-                <Copy response={response}/>
-                {response}
+                
+                <Copy response={response} />
+
+                <pre>
+                    {response}
+                </pre>
             </div>
         </section>
     );

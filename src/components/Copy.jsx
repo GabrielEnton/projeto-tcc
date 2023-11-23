@@ -4,17 +4,17 @@ import { copyToClipboeard } from "../helpers/copyToClickboard";
 
 
 
-const Copy = (props) =>{
-    
+const Copy = (props) => {
+
     const SETTIMEOUT_MS = 3000
     const [hasCopied, setHasCopied] = useState(false);
     const timeoutRef = useRef(null)
 
-    useEffect(()=>{
+    useEffect(() => {
         setTimeout(setHasCopied, SETTIMEOUT_MS, false);
 
         return () => {
-            if(!timeoutRef) return;
+            if (!timeoutRef) return;
             clearTimeout(timeoutRef.current)
         }
 
@@ -22,18 +22,20 @@ const Copy = (props) =>{
 
     const handleOnClick = () => {
         copyToClipboeard(props.response)
-        
+
         setHasCopied(true);
     };
 
 
-    const iconId = hasCopied ? 'check': 'copy';
+    const iconId = hasCopied ? 'check' : 'copy';
 
-return (
-    <button onClick={handleOnClick} type="button" className="copy">
-        <Icon id={iconId}/>
-    </button>
-)
+    return (
+        <div className="content-copy"> 
+            <button onClick={handleOnClick} type="button" className="copy">
+                <Icon id={iconId} />
+            </button>
+        </div>
+    )
 
 };
 
