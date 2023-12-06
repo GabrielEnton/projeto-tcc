@@ -3,7 +3,7 @@ import IconCopy from "./IconCopy";
 import IconCheck from "./IconCheck";
 
 
-const Icon = ({ id,    props }) => {
+const Icon = ({ id, props }) => {
 
     const icons = {
 

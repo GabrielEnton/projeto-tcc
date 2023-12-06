@@ -7,7 +7,9 @@ export default function Img() {
     const [key, setKey] = useState("");
     const [response, setResponse] = useState("");
     const [removeLoading, setRemoveLoading] = useState(true);
-    const HTTP = "http://localhost:8020/chat";
+    const HTTP = "http://localhost:8020/";
+
+
 
     const handleSubmit = (e) => {
 
@@ -17,6 +19,7 @@ export default function Img() {
             .post(`${HTTP}`, { prompt, key })
             .then((res) => {
                 setResponse(res.data)
+                console.log(res)
                 setRemoveLoading(true)
 
             })
@@ -26,8 +29,14 @@ export default function Img() {
     }
 
     const heandlePrompt = (e) => setPrompt(e.target.value);
-    const loadingActive = (e) => setRemoveLoading(false)
+    const activateActions = (e) => {
+        setRemoveLoading(false)
+        setKey("img")
+        if (response !== "") {
+            setResponse("")
+        }
 
+    }
     return (
         <section className="page-img">
             <div className="description">
@@ -36,6 +45,7 @@ export default function Img() {
             <form className="form" onSubmit={handleSubmit}>
                 <div className="form__input">
                     <input
+                        required
                         type="text"
                         value={prompt}
                         onChange={heandlePrompt}
@@ -49,13 +59,12 @@ export default function Img() {
                 <button
                     className="form__btn"
                     type="submit"
-                    onClick={() => setKey("img")}
-                    checked={key === "img"}
+                    onClick={activateActions}
                     value={"img"}
                 >Gerar imagem</button>
             </form>
             <div className="result">
-                {!removeLoading && <Loading />}    
+                {!removeLoading && <Loading />}
                 <img src={response} alt="" />
             </div>
         </section>

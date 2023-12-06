@@ -7,11 +7,9 @@ export default function Text() {
     const [prompt, setPrompt] = useState("");
     const [response, setResponse] = useState("");
     const [removeLoading, setRemoveLoading] = useState(true);
-    const HTTP = "http://localhost:8020/chat";
+    const HTTP = "http://localhost:8020/";
 
     const handleSubmit = (e) => {
-
-
         e.preventDefault();
         axios
             .post(`${HTTP}`, { prompt })
@@ -36,14 +34,19 @@ export default function Text() {
             <form className="form" onSubmit={handleSubmit}>
                 <div className="form__input">
                     <input
+                        required
                         type="text"
                         value={prompt}
                         onChange={heandlePrompt}
                         placeholder="DIGITE COMO VOCÊ QUER O SEU HTML"
                     />
                 </div>
-                <div className="form__radio">
-                    <span>Criatividade do texto:</span>
+                <div className="form__btns">
+                    <section>
+                        <button>Formulario</button>
+                        <button>Cronometro</button>
+                        <button>Calculadora</button>
+                    </section>
                 </div>
 
                 <button
@@ -53,10 +56,8 @@ export default function Text() {
                 >Gerar HTML</button>
             </form>
             <div className="result">
-                {!removeLoading && <Loading />}
-                
                 <Copy response={response} />
-
+                {!removeLoading && <Loading />}
                 <pre>
                     {response}
                 </pre>

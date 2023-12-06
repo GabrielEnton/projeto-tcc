@@ -1,5 +1,6 @@
 .page-code {
     background: #021700;
+    padding-bottom: 70px;
 
     .description {
         display: flex;
@@ -28,7 +29,7 @@
 
         &__input {
             width: 50%;
-            margin: 0px auto 20px auto;
+            margin: 0px auto 40px auto;
 
             input {
                 width: 100%;
@@ -53,20 +54,25 @@
             }
         }
 
-        &__radio {
-            color: #fff;
-            font-weight: 600;
-            margin: auto;
-            width: 50%;
-            display: flex;
-            text-align: start;
-            align-items: center;
-            text-transform: uppercase;
 
-            label {
-                margin-left: 30px;
-                display: flex;
-                align-items: center;
+        &__btns {
+            margin: auto;
+            button {
+                background: #A6FF7C;
+                color: #020014;
+                width: 160px;
+                height: 40px;
+                margin: 0 30px;
+                border-radius: 4px;
+                border: none;
+                text-transform: uppercase;
+                font-weight: bold;
+                cursor: pointer;
+
+                &:hover {
+                    background: #E6FFC7;
+                }
+    
             }
         }
 

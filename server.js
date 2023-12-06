@@ -18,10 +18,12 @@ const app = express();
 app.use(bodyParse.json());
 app.use(cors());
 
-app.post("/chat", async (req, res) => {
+app.post("/", async (req, res) => {
     const { prompt } = req.body;
     const { gender } = req.body
     const { key } = req.body
+
+    console.log(key)
 
     if (key === "img") {
         const image = await openai.createImage({
@@ -55,6 +57,10 @@ app.post("/chat", async (req, res) => {
         const completion = await openai.createChatCompletion({
             model: "gpt-4",
             messages: [
+                {
+                    role: "system",
+                    content: "you are an expert assistant in html, css and javascript.",
+                  },
                 {
                     role: "user",
                     content: prompt + "Mostra somente o html"

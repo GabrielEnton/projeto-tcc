@@ -1,23 +1,21 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import Loading from "../components/Loading";
 import Copy from "../components/Copy";
-import Icon from "../components/Icon";
-import { copyToClipboeard } from "../helpers/copyToClickboard";
 
 export default function Text() {
     const [prompt, setPrompt] = useState("");
-    const [gender, setGender] = useState("");
+    const [gender, setGender] = useState(0.2);
+    const [key, setKey] = useState("");
     const [response, setResponse] = useState("");
     const [removeLoading, setRemoveLoading] = useState(true);
-    const HTTP = "http://localhost:8020/chat";
+    const HTTP = "http://localhost:8020/";
 
     const handleSubmit = (e) => {
-
-
+        setRemoveLoading(false)
         e.preventDefault();
         axios
-            .post(`${HTTP}`, { prompt, gender })
+            .post(`${HTTP}`, { prompt, gender, key })
             .then((res) => {
                 setResponse(res.data)
                 setRemoveLoading(true)
@@ -29,32 +27,13 @@ export default function Text() {
     }
 
     const heandlePrompt = (e) => setPrompt(e.target.value);
-    const loadingActive = (e) => setRemoveLoading(false)
 
-    const SETTIMEOUT_MS = 3000
-    const [hasCopied, setHasCopied] = useState(false);
-    const timeoutRef = useRef(null)
-
-    useEffect(()=>{
-        setTimeout(setHasCopied, SETTIMEOUT_MS, false);
-
-        return () => {
-            if(!timeoutRef) return;
-            clearTimeout(timeoutRef.current)
+    const activateActions = (e) => {
+        setKey("text")
+        if (response !== "") {
+            setResponse("")
         }
-
-    }, [hasCopied])
-
-    const handleOnClick = () => {
-        copyToClipboeard(response)
-        
-        setHasCopied(true);
-    };
-
-
-    const iconId = hasCopied ? 'check': 'copy';
-
-
+    }
 
     return (
         <section className="page-text">
@@ -64,6 +43,7 @@ export default function Text() {
             <form className="form" onSubmit={handleSubmit}>
                 <div className="form__input">
                     <input
+                        required
                         type="text"
                         value={prompt}
                         onChange={heandlePrompt}
@@ -103,20 +83,18 @@ export default function Text() {
                         Alta
                     </label>
                 </div>
-
                 <button
                     className="form__btn"
                     type="submit"
-                    onClick={loadingActive}
+                    onClick={activateActions}
                 >Gerar texto</button>
             </form>
             <div className="result" >
+                <Copy response={response} />
                 {!removeLoading && <Loading />}
-                <Copy response={response}/>
                 {response}
-                
+
             </div>
-            
         </section>
     );
 }
